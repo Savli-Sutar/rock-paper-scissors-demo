@@ -29,26 +29,28 @@ const determineWinner = (userChoice, computerChoice) => {
 
 // --- DOM Interaction ---
 
-// 1. Select the HTML elements
+
 const buttons = document.querySelectorAll('.choice-btn');
 const userDisplay = document.getElementById('user-display');
 const computerDisplay = document.getElementById('computer-display');
 const winnerText = document.getElementById('winner-text');
 
-// 2. The Play Game function
 const playGame = (userChoice) => {
-  const computerChoice = getComputerChoice();
-
-  // Update the screen text
-  userDisplay.textContent = `User Choice: ${userChoice}`;
-  computerDisplay.textContent = `Computer Choice: ${computerChoice}`;
-  winnerText.textContent = determineWinner(userChoice, computerChoice);
+    const computerChoice = getComputerChoice();
+    
+    // Update text
+    userDisplay.textContent = `User: ${userChoice}`;
+    computerDisplay.textContent = `CPU: ${computerChoice}`;
+    
+    // Determine winner
+    const result = determineWinner(userChoice, computerChoice);
+    winnerText.textContent = result;
 };
 
-// 3. Add click listeners to buttons
+// Listen for clicks
 buttons.forEach(button => {
-  button.addEventListener('click', () => {
-    // We use the button's ID (rock, paper, or scissors) as the choice
-    playGame(button.id);
-  });
+    button.addEventListener('click', () => {
+        // This picks up the ID: "rock", "paper", or "scissors"
+        playGame(button.id);
+    });
 });
